@@ -1,0 +1,52 @@
+<div class="p-panel-content">
+    <div _ngcontent-ng-c3602375974=""
+        class="flex align-items-center justify-content-center text-2xl font-bold mb-1 bpaas-flow-header-title">
+        <!--bindings={}--><span _ngcontent-ng-c3602375974="" class="ng-star-inserted">One Sales Cost-Dumping Application
+            Form</span><!--bindings={
+ }--><p-tag _ngcontent-ng-c3602375974="" class="p-element ml-2 mb-2" ng-reflect-value="Draft"
+            ng-reflect-severity="warning"><span ng-reflect-ng-class="[object Object]"
+                class="p-tag p-component p-tag-warning"><!--bindings={}--><!--ng-container--><!--bindings={
+ }--><!--bindings={}--><span class="p-tag-value">Draft</span></span></p-tag>
+    </div>
+    <p-autoComplete [(ngModel)]="value" [suggestions]="items" (completeMethod)="search($event)" />
+
+    <p-tabView value="0">
+
+        <p-tabPanel header="Header 1">
+
+            <p-fieldset legend="Header" [toggleable]="true">
+                <form [formGroup]="formGroup" class="flex flex-column align-items-center gap-3">
+                    <input type="text" pInputText formControlName="form1" />
+                </form>
+            </p-fieldset>
+
+        </p-tabPanel>
+        <p-tabPanel header="Header 2">
+            <p class="m-0">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                totam rem
+                aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                explicabo.
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
+                magni
+                dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam
+                eius
+                modi.
+            </p>
+        </p-tabPanel>
+        <p-tabPanel header="Header 3">
+            <p class="m-0">
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+                deleniti
+                atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
+                similique
+                sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
+                rerum
+                facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque
+                nihil
+                impedit quo minus.
+            </p>
+        </p-tabPanel>
+    </p-tabView>
+
+</div>

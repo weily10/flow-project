@@ -7,7 +7,9 @@ import { TabViewModule } from 'primeng/tabview';
 import { PanelModule } from 'primeng/panel';
 import { FieldsetModule } from 'primeng/fieldset';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+
 
 
 
@@ -17,7 +19,7 @@ import { FormBuilder, FormGroup,Validators } from '@angular/forms';
   selector: 'app-formpage',
   templateUrl: './formpage.component.html',
   styleUrls: ['./formpage.component.css'],
-  imports: [AutoCompleteModule, FormsModule, CommonModule, TagModule, TabViewModule, PanelModule, FieldsetModule, ReactiveFormsModule]
+  imports: [AutoCompleteModule, FormsModule, CommonModule, TagModule, TabViewModule, PanelModule, FieldsetModule, ReactiveFormsModule,InputTextModule ]
 })
 export class FormpageComponent {
   formGroup: FormGroup;

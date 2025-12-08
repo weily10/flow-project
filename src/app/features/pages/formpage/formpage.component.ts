@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -6,14 +6,12 @@ import { TagModule } from 'primeng/tag';
 import { TabViewModule } from 'primeng/tabview';
 import { PanelModule } from 'primeng/panel';
 import { FieldsetModule } from 'primeng/fieldset';
-import { DropdownModule } from 'primeng/dropdown';  
+import { DropdownModule } from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
-
-
-
-
+import { ButtonModule } from 'primeng/button';
+import { MainService } from 'src/app/core/services/main.service';
 
 @Component({
   standalone: true,
@@ -21,18 +19,32 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './formpage.component.html',
   styleUrls: ['./formpage.component.css'],
   imports: [
-    AutoCompleteModule, 
-    FormsModule, 
-    CommonModule, 
-    TagModule, 
-    TabViewModule, 
-    PanelModule, 
-    FieldsetModule, 
+    AutoCompleteModule,
+    FormsModule,
+    CommonModule,
+    TagModule,
+    TabViewModule,
+    PanelModule,
+    FieldsetModule,
     ReactiveFormsModule,
     InputTextModule,
-    DropdownModule]
+    DropdownModule,
+    ButtonModule,
+  ],
 })
 export class FormpageComponent {
+  constructor(
+    private readonly MainService: MainService,
+    private fb: FormBuilder
+  ) {
+    this.formGroup = this.fb.group({
+      salesAutoComplete: ['', Validators.required],
+      input1: ['', Validators.required],
+      input2: ['', Validators.required],
+      input3: ['', Validators.required],
+      input4: ['', Validators.required],
+    });
+  }
   formGroup: FormGroup;
   value: string = '';
   items: string[] = [];
@@ -41,29 +53,31 @@ export class FormpageComponent {
     { name: 'Rome', code: 'RM' },
     { name: 'London', code: 'LDN' },
     { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' }
+    { name: 'Paris', code: 'PRS' },
   ];
   selectedCity: string = 'New York';
 
-
-
-  constructor(private fb: FormBuilder) {
-    this.formGroup = this.fb.group({
-      input1: ['', Validators.required],
-      input2: ['', Validators.required],
-      input3: ['', Validators.required],
-      input4: ['', Validators.required],
-    });
+  get suggestions() {
+    return this.MainService._suggestions;
   }
 
   search(event: any) {
     const q = event.query.toLowerCase();
-    this.items = ['Apple', 'Banana', 'Cherry'].filter(x => x.toLowerCase().includes(q));
+    this.items = ['Apple', 'Banana', 'Cherry'].filter((x) =>
+      x.toLowerCase().includes(q)
+    );
+  }
+  loadItems(e: any) {}
+
+  onSubmit() {
+    if (this.formGroup.valid) {
+      console.log(this.formGroup.value);
+    } else {
+      console.log('Form is invalid');
+    }
   }
 
-
-  loadItems() {
-    
+  getAutoCompleteSuggestions(e: any) {
+    this.MainService.getAutoCompleteSuggestions(e);
   }
-
 }

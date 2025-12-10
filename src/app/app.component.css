@@ -1,0 +1,38 @@
+
+/* Toolbar height assumed ~56px. Adjust if needed. */
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr; /* sidebar + content */
+  min-height: calc(100vh - 56px);
+}
+
+ .layout.sidebar-collapsed {
+  grid-template-columns: 0 1fr;
+}
+
+.sidebar {
+  border-right: 1px solid #eee;
+  background: #fff;
+  overflow: hidden;          
+  transition: width .25s ease;
+  padding: 12px;
+}
+
+.sidebar h3 { margin: 0 0 8px; font-weight: 600; }
+.menu { display: flex; flex-direction: column; }
+.menu-item {
+  padding: 10px 8px;
+  text-decoration: none;
+  color: var(--text-color, #333);
+  border-radius: 6px;
+}
+.menu-item:hover { background: #f5f5f5; }
+
+.content {
+  padding: 16px;
+  background: var(--surface-ground, #fafafa);
+}
+
+ @media (max-width: 1023px) {
+  .layout { grid-template-columns: 0 1fr; }  
+}

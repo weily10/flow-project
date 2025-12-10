@@ -4,24 +4,33 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormpageComponent } from './features/pages/formpage/formpage.component';
-import { AutoCompleteModule  } from 'primeng/autocomplete';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { environment } from './environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
+import { PrimeIcons } from 'primeng/api';
+import { SettingsComponent } from './features/pages/settings/settings.component'; // just for type hints if needed
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormpageComponent,
-    AutoCompleteModule
+    AutoCompleteModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToolbarModule,
+    ButtonModule,
+    SidebarModule,
   ],
-  providers: [
-    provideAnimations()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideAnimations()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

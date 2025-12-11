@@ -1,26 +1,31 @@
 import { Component } from '@angular/core';
-import { TableModule } from 'primeng/table';
+import { SharedModule } from '../../../shared/components/shared.module';
 
 @Component({
   standalone: true,
-  imports: [TableModule],
+  imports: [SharedModule],
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent {
-  products = [
+  visible: boolean = false;
+  employees = [
     {
-      id: '1000',
-      code: 'f230fh0g3',
-      name: 'Bamboo Watch',
-      description: 'Product Description',
-      image: 'bamboo-watch.jpg',
-      price: 65,
-      category: 'Accessories',
+      employeeId: '1000',
+      jobTitle: 'business analyst',
+      name: 'Walt',
+      region: 'Taiwan',
+      email: 'walt@gmail.com',
+      manager: 'Samantha',
+      status: 'Active',
     },
   ];
   addSalesDep() {
     console.log('sada');
+  }
+
+  showAddDialog() {
+    this.visible = true;
   }
 }

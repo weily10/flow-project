@@ -1,0 +1,48 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+// PrimeNG modules
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { TagModule } from 'primeng/tag';
+import { TabViewModule } from 'primeng/tabview';
+import { PanelModule } from 'primeng/panel';
+import { FieldsetModule } from 'primeng/fieldset';
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+
+@NgModule({
+  declarations: [],
+  imports: [
+    CommonModule,
+    InputTextModule,
+    CardModule,
+    TableModule,
+    AutoCompleteModule,
+    TagModule,
+    TabViewModule,
+    PanelModule,
+    FieldsetModule,
+    DropdownModule,
+    ButtonModule,
+    DialogModule,
+  ],
+  exports: [
+    CommonModule,
+    CardModule,
+    ButtonModule,
+    TableModule,
+    AutoCompleteModule,
+    TagModule,
+    TabViewModule,
+    PanelModule,
+    FieldsetModule,
+    InputTextModule,
+    DropdownModule,
+    DialogModule,
+  ],
+})
+export class SharedModule {}

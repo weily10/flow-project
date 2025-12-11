@@ -36,3 +36,8 @@
  @media (max-width: 1023px) {
   .layout { grid-template-columns: 0 1fr; }  
 }
+
+
+.p-toolbar {
+  padding: 0.4rem !important;
+}

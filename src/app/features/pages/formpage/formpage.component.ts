@@ -1,17 +1,10 @@
 import { Component } from '@angular/core';
-import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { TagModule } from 'primeng/tag';
-import { TabViewModule } from 'primeng/tabview';
-import { PanelModule } from 'primeng/panel';
-import { FieldsetModule } from 'primeng/fieldset';
-import { DropdownModule } from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 import { MainService } from 'src/app/core/services/main.service';
+import { SharedModule } from '../../../shared/components/shared.module';
 
 @Component({
   standalone: true,
@@ -19,17 +12,10 @@ import { MainService } from 'src/app/core/services/main.service';
   templateUrl: './formpage.component.html',
   styleUrls: ['./formpage.component.css'],
   imports: [
-    AutoCompleteModule,
     FormsModule,
     CommonModule,
-    TagModule,
-    TabViewModule,
-    PanelModule,
-    FieldsetModule,
     ReactiveFormsModule,
-    InputTextModule,
-    DropdownModule,
-    ButtonModule,
+    SharedModule
   ],
 })
 export class FormpageComponent {

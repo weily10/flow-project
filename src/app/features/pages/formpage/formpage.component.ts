@@ -30,8 +30,10 @@ export class FormpageComponent {
       input3: ['', Validators.required],
       input4: ['', Validators.required],
     });
+   
   }
   formGroup: FormGroup;
+  
   value: string = '';
   items: string[] = [];
   cities: any[] = [
@@ -62,6 +64,8 @@ export class FormpageComponent {
       console.log('Form is invalid');
     }
   }
+
+  
 
   getAutoCompleteSuggestions(e: any) {
     this.MainService.getAutoCompleteSuggestions(e);

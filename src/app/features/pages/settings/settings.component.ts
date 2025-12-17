@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../shared/components/shared.module';
 import { FormBuilder, FormGroup, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
- 
+import { SettingsService } from '../../../core/services/settings.service';
+
 @Component({
   standalone: true,
   imports: [SharedModule, ɵInternalFormsSharedModule],
@@ -10,9 +11,10 @@ import { FormBuilder, FormGroup, Validators, ɵInternalFormsSharedModule } from 
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent {
-   employeeForm: FormGroup;
-  constructor(private fb: FormBuilder) {
-    
+  employeeForm: FormGroup;
+  constructor(private fb: FormBuilder, private settingsService: SettingsService) {
+
+
     this.employeeForm = this.fb.group({
       employeeId: ['', Validators.required],
       jobTitle: ['', Validators.required],
@@ -22,19 +24,9 @@ export class SettingsComponent {
       manager: ['', Validators.required],
       status: ['', Validators.required],
     });
-   }
+  }
   visible: boolean = false;
-  employees = [
-    {
-      employeeId: '1000',
-      jobTitle: 'business analyst',
-      username: 'Walt',
-      region: 'Taiwan',
-      email: 'walt@gmail.com',
-      manager: 'Samantha',
-      status: 'Active',
-    },
-  ];
+
 
   jobTitles = [
     { label: 'Business Analyst', value: 'businessAnalyst' },
@@ -51,14 +43,14 @@ export class SettingsComponent {
     { label: 'Australia', value: 'australia' },
   ];
 
-  managers=[
+  managers = [
     { label: 'Samantha', value: 'samantha' },
     { label: 'Orc', value: 'orc' },
     { label: 'Vladimir', value: 'vladimir' },
     { label: 'Ivan', value: 'ivan' },
   ]
 
-  stateOptions = [ { label: 'Active', value: 'Active' }, { label: 'Inactive', value: 'Inactive' } ];
+  stateOptions = [{ label: 'Active', value: 'Active' }, { label: 'Inactive', value: 'Inactive' }];
   addSalesDep() {
     console.log('sada');
   }
@@ -67,16 +59,20 @@ export class SettingsComponent {
     this.visible = true;
   }
 
- 
+  get employees() {
+    return this.settingsService._employees();
+  }
+
+
 
   onSubmit() {
-     console.log('dsadas',this.employeeForm);
+    console.log('dsadas', this.employeeForm);
     if (this.employeeForm.valid) {
       this.employees.push(this.employeeForm.value);
       this.employeeForm.reset();
       this.visible = false;
-      console.log('dsadas',this.employees);
-      
+      console.log('dsadas', this.employees);
+
     }
   }
 }

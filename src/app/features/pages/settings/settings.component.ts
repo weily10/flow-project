@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../shared/components/shared.module';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
+ 
 @Component({
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, ɵInternalFormsSharedModule],
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent {
-  addEmpGroup: FormGroup;
+   employeeForm: FormGroup;
   constructor(private fb: FormBuilder) {
-    this.addEmpGroup = this.fb.group({
-      empName: ['', Validators.required],
-      empAge: ['', [Validators.required, Validators.min(18)]],
-      empPosition: ['', Validators.required],
+    
+    this.employeeForm = this.fb.group({
+      employeeId: ['', Validators.required],
+      jobTitle: ['', Validators.required],
+      username: ['', Validators.required],
+      region: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      manager: ['', Validators.required],
+      status: ['', Validators.required],
     });
    }
   visible: boolean = false;
@@ -23,13 +28,37 @@ export class SettingsComponent {
     {
       employeeId: '1000',
       jobTitle: 'business analyst',
-      name: 'Walt',
+      username: 'Walt',
       region: 'Taiwan',
       email: 'walt@gmail.com',
       manager: 'Samantha',
       status: 'Active',
     },
   ];
+
+  jobTitles = [
+    { label: 'Business Analyst', value: 'businessAnalyst' },
+    { label: 'Developer', value: 'developer' },
+    { label: 'Manager', value: 'manager' },
+    { label: 'Intern', value: 'intern' },
+  ];
+
+
+  regions = [
+    { label: 'North America', value: 'northAmerica' },
+    { label: 'Europe', value: 'europe' },
+    { label: 'Asia', value: 'asia' },
+    { label: 'Australia', value: 'australia' },
+  ];
+
+  managers=[
+    { label: 'Samantha', value: 'samantha' },
+    { label: 'Orc', value: 'orc' },
+    { label: 'Vladimir', value: 'vladimir' },
+    { label: 'Ivan', value: 'ivan' },
+  ]
+
+  stateOptions = [ { label: 'Active', value: 'Active' }, { label: 'Inactive', value: 'Inactive' } ];
   addSalesDep() {
     console.log('sada');
   }
@@ -38,8 +67,16 @@ export class SettingsComponent {
     this.visible = true;
   }
 
-  addJob(event: any) {
-    // You can implement logic to filter job titles based on user input
-    console.log(event.query);
+ 
+
+  onSubmit() {
+     console.log('dsadas',this.employeeForm);
+    if (this.employeeForm.valid) {
+      this.employees.push(this.employeeForm.value);
+      this.employeeForm.reset();
+      this.visible = false;
+      console.log('dsadas',this.employees);
+      
+    }
   }
 }

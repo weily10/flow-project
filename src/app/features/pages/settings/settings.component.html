@@ -4,7 +4,7 @@
   <div>
     <h3>sales department</h3>
     <div class="surface-0 p-3">
-      <p-table [value]="employees" [tableStyle]="{ 'min-width': '10rem' }" responsiveLayout="stack">
+      <p-table [value]="employees()" [tableStyle]="{ 'min-width': '10rem' }" responsiveLayout="stack">
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-between">
             Employees
@@ -30,12 +30,12 @@
             <td>{{ employee.region }}</td>
             <td>{{ employee.email }}</td>
             <td>{{ employee.manager }}</td>
-            <td>{{ employee.status }}</td>
+            <td>{{ employee.status == true ? 'Active' : 'Inactive' }}</td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">
           <div class="flex align-items-center justify-content-between">
-            In total there are {{ employees ? employees.length : 0 }} employees
+            In total there are {{ employees() ? employees().length : 0 }} employees
           </div>
         </ng-template>
       </p-table>

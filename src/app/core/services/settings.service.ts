@@ -1,24 +1,30 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
- import { Employee } from '../models/Employee';
+import { Employee } from '../models/Employee';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SettingsService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   _employees = signal<Employee[]>([]);
-  suggestions = computed(() => this._employees());
-
-  getEmployees(): void {
-    let endpoint = `http://localhost:8080/employees`;
  
-    this.httpClient
-      .get<Employee[]>(endpoint)
-      .subscribe((results: Employee[]) => {
-        console.log('results', results);
-        this._employees.set(results);
-      });
+  getEmployees(): Observable<Employee[]> {
+  return this.httpClient.get<Employee[]>('http://localhost:8080/employees');
+}
+
+  addEmployee(employee: Employee) {
+    return this.httpClient
+      .post<Employee>('http://localhost:8080/employees', employee)
+      .pipe(
+        tap((newEmployee: Employee) => {
+          this._employees.set([
+            ...this._employees(),
+            newEmployee
+          ]);
+        })
+      );
   }
 }

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SharedModule } from '../../../shared/components/shared.module';
 import { FormBuilder, FormGroup, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
 import { SettingsService } from '../../../core/services/settings.service';
+import { Employee } from 'src/app/core/models/Employee';
 
 @Component({
   standalone: true,
@@ -11,6 +12,7 @@ import { SettingsService } from '../../../core/services/settings.service';
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent {
+  employees = signal<Employee[]>([]);
   employeeForm: FormGroup;
   constructor(private fb: FormBuilder, private settingsService: SettingsService) {
 
@@ -26,7 +28,6 @@ export class SettingsComponent {
     });
   }
   visible: boolean = false;
-
 
   jobTitles = [
     { label: 'Business Analyst', value: 'businessAnalyst' },
@@ -50,7 +51,7 @@ export class SettingsComponent {
     { label: 'Ivan', value: 'ivan' },
   ]
 
-  stateOptions = [{ label: 'Active', value: 'Active' }, { label: 'Inactive', value: 'Inactive' }];
+  stateOptions = [{ label: 'Active', value: true }, { label: 'Inactive', value: false }];
   addSalesDep() {
     console.log('sada');
   }
@@ -59,20 +60,21 @@ export class SettingsComponent {
     this.visible = true;
   }
 
-  get employees() {
-    return this.settingsService._employees();
+
+  ngOnInit() {
+    this.settingsService.getEmployees().subscribe(results => {
+      this.employees.set(results);
+    });
   }
 
 
 
-  onSubmit() {
-    console.log('dsadas', this.employeeForm);
-    if (this.employeeForm.valid) {
-      this.employees.push(this.employeeForm.value);
-      this.employeeForm.reset();
-      this.visible = false;
-      console.log('dsadas', this.employees);
 
-    }
+  onSubmit() {
+    this.settingsService.addEmployee(this.employeeForm.value)
+      .subscribe(() => {
+        this.employeeForm.reset();
+        this.visible = false;
+      });
   }
 }

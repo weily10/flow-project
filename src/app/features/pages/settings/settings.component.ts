@@ -14,9 +14,10 @@ import { Employee } from 'src/app/core/models/Employee';
 export class SettingsComponent {
   employees = signal<Employee[]>([]);
   employeeForm: FormGroup;
-  constructor(private fb: FormBuilder, private settingsService: SettingsService) {
-
-
+  constructor(
+    private fb: FormBuilder,
+    private settingsService: SettingsService
+  ) {
     this.employeeForm = this.fb.group({
       employeeId: ['', Validators.required],
       jobTitle: ['', Validators.required],
@@ -36,7 +37,6 @@ export class SettingsComponent {
     { label: 'Intern', value: 'intern' },
   ];
 
-
   regions = [
     { label: 'North America', value: 'northAmerica' },
     { label: 'Europe', value: 'europe' },
@@ -49,32 +49,47 @@ export class SettingsComponent {
     { label: 'Orc', value: 'orc' },
     { label: 'Vladimir', value: 'vladimir' },
     { label: 'Ivan', value: 'ivan' },
-  ]
+  ];
 
-  stateOptions = [{ label: 'Active', value: true }, { label: 'Inactive', value: false }];
-  addSalesDep() {
-    console.log('sada');
-  }
-
+  stateOptions = [
+    { label: 'Active', value: true },
+    { label: 'Inactive', value: false },
+  ];
+   
   showAddDialog() {
     this.visible = true;
   }
 
-
   ngOnInit() {
-    this.settingsService.getEmployees().subscribe(results => {
+    this.getEmployees();
+  }
+
+  getEmployees() {
+    this.settingsService.getEmployees().subscribe((results) => {
       this.employees.set(results);
+      console.log('fetched employees:', results);
     });
   }
 
+  deleteEmployee(employee: Employee) {
+    const employeeId = employee.id;
+    console.log('deleting employee with id:', employee);
+    
+    
+    this.settingsService.deleteEmployee(employeeId).subscribe(() => {
+      this.getEmployees();
+     });
+  }
 
-
+  editEmployee(employee: Employee) {}
+  
+    
 
   onSubmit() {
-    this.settingsService.addEmployee(this.employeeForm.value)
-      .subscribe(() => {
-        this.employeeForm.reset();
-        this.visible = false;
-      });
+    this.settingsService.addEmployee(this.employeeForm.value).subscribe(() => {
+      this.getEmployees();
+      this.employeeForm.reset();
+      this.visible = false;
+    });
   }
 }

@@ -4,7 +4,7 @@
   <div>
     <h3>sales department</h3>
     <div class="surface-0 p-3">
-      <p-table [value]="employees()" [tableStyle]="{ 'min-width': '10rem' }" responsiveLayout="stack">
+      <p-table [value]="employees()" [tableStyle]="{ 'min-width': '5rem' }" responsiveLayout="stack">
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-between">
             Employees
@@ -20,6 +20,7 @@
             <th>Email</th>
             <th>Manager</th>
             <th>Status</th>
+            <th>Actions </th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-employee>
@@ -31,6 +32,10 @@
             <td>{{ employee.email }}</td>
             <td>{{ employee.manager }}</td>
             <td>{{ employee.status == true ? 'Active' : 'Inactive' }}</td>
+            <td class="flex gap-2 ">
+              <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="help "  (click)="editEmployee(employee)" />
+              <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="help "  (click)="deleteEmployee(employee)" />
+            </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">
@@ -75,13 +80,13 @@
 
           <div class="flex flex-column gap-1 mb-4">
             <label for="regions" class="font-semibold w-24">Region</label>
-            <p-dropdown [options]="regions" id="regions" formControlName="region" class="flex-auto"
-              placeholder="region" appendTo="body"></p-dropdown>
+            <p-dropdown [options]="regions" id="regions" formControlName="region" class="flex-auto" placeholder="region"
+              appendTo="body"></p-dropdown>
           </div>
           <div class="flex flex-column gap-1 mb-4">
             <label for="managers" class="font-semibold w-24">Manager</label>
-            <p-dropdown [options]="managers" id="managers" formControlName="manager" class="flex-auto" placeholder="managers"
-              appendTo="body"></p-dropdown>
+            <p-dropdown [options]="managers" id="managers" formControlName="manager" class="flex-auto"
+              placeholder="managers" appendTo="body"></p-dropdown>
           </div>
         </div>
       </div>

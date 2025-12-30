@@ -1,43 +1,73 @@
-
-/* Toolbar height assumed ~56px. Adjust if needed. */
+/* 1. Layout Container */
 .layout {
-  display: grid;
-  grid-template-columns: 280px 1fr; /* sidebar + content */
-  min-height: calc(100vh - 56px);
+  display: flex;
+  min-height: 100vh;
+  transition: padding-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
- .layout.sidebar-collapsed {
-  grid-template-columns: 0 1fr;
-}
-
+/* 2. Sidebar Base */
 .sidebar {
-  border-right: 1px solid #eee;
-  background: #fff;
-  overflow: hidden;          
-  transition: width .25s ease;
-  padding: 12px;
+  width: 260px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  /* Crucial: hides the sliding text as the bar shrinks */
+  display: flex;
+  flex-direction: column;
 }
 
-.sidebar h3 { margin: 0 0 8px; font-weight: 600; }
-.menu { display: flex; flex-direction: column; }
+/* 3. Collapsed State for Sidebar */
+.sidebar-collapsed .sidebar {
+  width: 70px;
+  /* Width enough for icons only */
+}
+
+/* 4. Menu Container */
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 4px;
+}
+
+/* 5. Menu Items with Animation */
 .menu-item {
-  padding: 10px 8px;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
   text-decoration: none;
   color: var(--text-color, #333);
-  border-radius: 6px;
-}
-.menu-item:hover { background: #f5f5f5; }
+  border-radius: 8px;
+  white-space: nowrap;
+  /* Prevents text wrapping during the slide */
 
+  /* Transition handles the smooth return to normal state */
+  transition:
+    background 0.2s ease,
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
+
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.menu-item:hover {
+  background: #f5f5f5;
+}
+
+/* 6. Slide Animation Logic 
+   When the sidebar is collapsed, move items left and fade out */
+.sidebar-collapsed .menu-item {
+  transform: translateX(-15px);
+  /* Slides the text slightly left */
+  opacity: 0.5;
+  /* Optional: dims the text as it moves */
+}
+
+/* 7. Content Area Adjustment */
 .content {
-  padding: 16px;
-  background: var(--surface-ground, #fafafa);
-}
-
- @media (max-width: 1023px) {
-  .layout { grid-template-columns: 0 1fr; }  
-}
-
-
-.p-toolbar {
-  padding: 0.4rem !important;
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
 }

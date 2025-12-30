@@ -1,22 +1,17 @@
 <div class="p-panel-content">
   <div
-    class="flex align-items-center justify-content-center text-2xl font-bold mb-1 bpaas-flow-header-title"
+    class="flex align-items-center justify-content-center text-2xl font-bold mb-1 bpaas-flow-header-title mb-4"
   >
-    <span class="ng-star-inserted">One Sales Cost-Dumping Application Form</span
-    ><p-tag class="p-element ml-2 mb-2"
-      ><span class="p-tag p-component p-tag-warning"
-        ><span class="p-tag-value">Draft</span></span
-      ></p-tag
-    >
+    <span class="ng-star-inserted">One Sales Cost-Dumping Application Form</span>
   </div>
-  <p-autoComplete
+  <!-- <p-autoComplete
     [(ngModel)]="value"
     [suggestions]="items"
     (completeMethod)="search($event)"
-  />
+  /> -->
 
-  <p-tabView value="0">
-    <p-tabPanel header="Header 1">
+  <p-tabView value="0" class="mt-3">
+    <p-tabPanel header="Header 1" >
       <p-fieldset legend="Basic info" [toggleable]="true">
         <form [formGroup]="formGroup">
           <div class="grid p-fluid gap-3">

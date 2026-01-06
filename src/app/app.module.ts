@@ -15,10 +15,13 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { PrimeIcons } from 'primeng/api';
-import { SettingsComponent } from './features/pages/settings/settings.component'; // just for type hints if needed
+import { SettingsComponent } from './features/pages/settings/settings.component';
+import { LoginComponent } from './features/pages/login/login.component';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component'; // just for type hints if needed
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent, AuthLayoutComponent, DashboardLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

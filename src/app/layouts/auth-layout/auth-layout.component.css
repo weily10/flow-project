@@ -1,0 +1,17 @@
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  /* Use a subtle gradient or a different background color 
+     to separate it from the dashboard feel */
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.auth-card-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+

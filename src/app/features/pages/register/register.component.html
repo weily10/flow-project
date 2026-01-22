@@ -1,0 +1,9 @@
+<h1>Register</h1>
+
+<app-auth-form [form]="registerForm" [fields]="fields" (submitForm)="onRegister()">
+  <p>Create a new account.</p>
+</app-auth-form>
+
+<div>
+  Already have an account? <a routerLink="/login">Login</a>
+</div>

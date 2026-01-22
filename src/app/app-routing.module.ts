@@ -5,20 +5,23 @@ import { SettingsComponent } from './features/pages/settings/settings.component'
 import { LoginComponent } from './features/pages/login/login.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+import { RegisterComponent } from './features/pages/register/register.component';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: 'auth',
     component: AuthLayoutComponent,
     children: [
-      { path: '', component: LoginComponent },    
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
     ],
   },
   {
     path: '',
     component: DashboardLayoutComponent,
     children: [
-      { path: '', component: FormpageComponent, pathMatch: 'full'},
+      { path: '', component: FormpageComponent, pathMatch: 'full' },
       {
         path: 'settings',
         component: SettingsComponent,
@@ -26,7 +29,7 @@ const routes: Routes = [
     ],
   },
 
-  { path: '**', redirectTo: 'login' },
+  { path: '**', redirectTo: 'auth/login' },
 ];
 
 @NgModule({

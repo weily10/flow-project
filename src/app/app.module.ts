@@ -18,10 +18,11 @@ import { PrimeIcons } from 'primeng/api';
 import { SettingsComponent } from './features/pages/settings/settings.component';
 import { LoginComponent } from './features/pages/login/login.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component'; // just for type hints if needed
+import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+import { RegisterComponent } from './features/pages/register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AuthLayoutComponent, DashboardLayoutComponent],
+  declarations: [AppComponent, AuthLayoutComponent, DashboardLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

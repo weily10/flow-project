@@ -1,4 +1,14 @@
-<p>login works!</p>
+<h1>
+  Login Page
+</h1>
+
+<app-auth-form
+  [form]="loginForm"
+  [fields]="fields"
+  (submitForm)="onLogin()"
+></app-auth-form>
+
 <div>
-  <button type="button" (click)="onLogin()">Login</button>
+  New user? <a routerLink="/auth/register">Register here</a>
 </div>
+

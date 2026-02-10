@@ -23,16 +23,18 @@ export class RegisterComponent {
     private fb: FormBuilder,
     private router: Router,
   ) {}
-
+  isLoading = false;
   registerForm = this.fb.group({
-    username: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required],
+    username: ['', { nonNullable: true, validators: [Validators.required] }],
+    email: ['', { nonNullable: true, validators: [Validators.required] }],
+    password: ['', { nonNullable: true, validators: [Validators.required] }],
+    confirmPassword: [
+      '',
+      { nonNullable: true, validators: [Validators.required] },
+    ],
   });
 
   fields = [
-    { name: 'username', label: 'Username', type: 'text' },
     { name: 'email', label: 'Email', type: 'email' },
     { name: 'password', label: 'Password', type: 'password' },
     { name: 'confirmPassword', label: 'Confirm Password', type: 'password' },
@@ -40,7 +42,14 @@ export class RegisterComponent {
 
   onRegister() {
     console.log('Register form submitted', this.registerForm.value);
-    this.authService.register(this.registerForm.value).subscribe({
+    const formValue = this.registerForm.value;
+    const registrationData = {
+      username: formValue.username ?? '',
+      email: formValue.email ?? '',
+      password: formValue.password ?? '',
+      confirmPassword: formValue.confirmPassword ?? '',
+    };
+    this.authService.register(registrationData).subscribe({
       next: (response) => {
         console.log('Registration successful', response);
         this.router.navigate(['auth/login']);

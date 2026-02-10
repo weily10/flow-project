@@ -1,14 +1,10 @@
-<h1>
-  Login Page
-</h1>
+<h1>Login Page</h1>
 
 <app-auth-form
   [form]="loginForm"
   [fields]="fields"
   (submitForm)="onLogin()"
+  [isLoading]="isLoading"
 ></app-auth-form>
 
-<div>
-  New user? <a routerLink="/auth/register">Register here</a>
-</div>
-
+<div>New user? <a routerLink="/auth/register">Register here</a></div>

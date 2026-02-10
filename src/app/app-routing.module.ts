@@ -6,6 +6,7 @@ import { LoginComponent } from './features/pages/login/login.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { RegisterComponent } from './features/pages/register/register.component';
+import { authGuard } from './core/guards/auth.guards';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardLayoutComponent,
+    canActivate: [authGuard],
     children: [
       { path: '', component: FormpageComponent, pathMatch: 'full' },
       {

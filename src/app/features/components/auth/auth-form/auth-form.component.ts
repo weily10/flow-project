@@ -17,6 +17,7 @@ export class AuthFormComponent {
     label: string;
     type: string;
   }[];
+  @Input() isLoading: boolean = false;
 
   @Output() submitForm = new EventEmitter<void>();
 

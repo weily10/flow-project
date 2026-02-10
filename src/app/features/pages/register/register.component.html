@@ -1,6 +1,6 @@
 <h1>Register</h1>
 
-<app-auth-form [form]="registerForm" [fields]="fields" (submitForm)="onRegister()">
+<app-auth-form [isLoading]="isLoading" [form]="registerForm" [fields]="fields" (submitForm)="onRegister()">
   <p>Create a new account.</p>
 </app-auth-form>
 

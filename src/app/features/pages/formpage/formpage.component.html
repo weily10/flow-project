@@ -2,7 +2,7 @@
   <div
     class="flex align-items-center justify-content-center text-2xl font-bold mb-1 bpaas-flow-header-title mb-4"
   >
-    <span class="ng-star-inserted">One Sales Cost-Dumping Application Form</span>
+    <span class="ng-star-inserted">Application Form</span>
   </div>
   <!-- <p-autoComplete
     [(ngModel)]="value"
@@ -11,46 +11,33 @@
   /> -->
 
   <p-tabView value="0" class="mt-3">
-    <p-tabPanel header="Header 1" >
+    <p-tabPanel header="Form info" >
       <p-fieldset legend="Basic info" [toggleable]="true">
         <form [formGroup]="formGroup">
-          <div class="grid p-fluid gap-3">
-            <div class="gap-2">
+          <div class="grid p-fluid gap-3 ">
+            <div class="col gap-2">
               <label for="appnumber">Application Number</label>
               <input
                 id="appnumber"
                 type="text"
                 pInputText
-                formControlName="input1"
+                formControlName="appnumber"
               />
+              <label for="applicant">Applicant </label>
+              <input id="applicant" type="text" pInputText formControlName="applicant" />
             </div>
-            <div class="gap-2">
+            <div class="col gap-2">
               <label for="appdate">Application Date </label>
               <input
                 id="appdate"
                 type="text"
                 pInputText
-                formControlName="input2"
+                formControlName="appdate"
               />
-            </div>
-            <div class="gap-2">
-              <label for="applicant">Applicant </label>
-              <input
-                id="applicant"
-                type="text"
-                pInputText
-                formControlName="input3"
-              />
-            </div>
-            <div class="gap-2">
               <label for="appdepartment">Applicant Department</label>
-              <input
-                id="appdepartment"
-                type="text"
-                pInputText
-                formControlName="input4"
-              />
+              <input id="appdepartment" type="text" pInputText formControlName="appdepartment" />
             </div>
+           
           </div>
         </form>
       </p-fieldset>
@@ -69,23 +56,23 @@
               </div>
               <div class="gap-2">
                 <label for="name">Sales Department </label>
-                <input type="text" pInputText formControlName="input2" />
+                <input type="text" pInputText formControlName="salesDepartment" />
               </div>
               <div class="gap-2">
                 <label for="name">Customer </label>
-                <input type="text" pInputText formControlName="input3" />
+                <input type="text" pInputText formControlName="customer" />
               </div>
               <div class="gap-2">
                 <label for="name">OU</label>
-                <input type="text" pInputText formControlName="input4" />
+                <input type="text" pInputText formControlName="ou" />
               </div>
               <div class="gap-2">
                 <label for="name">Inv. Org</label>
-                <input type="text" pInputText formControlName="input4" />
+                <input type="text" pInputText formControlName="invOrg" />
               </div>
               <div class="gap-2">
                 <label for="name">Do</label>
-                <input type="text" pInputText formControlName="input4" />
+                <input type="text" pInputText formControlName="do" />
               </div>
             </div>
             <div class="mt-3">
@@ -95,7 +82,7 @@
         </p-fieldset>
       </div>
     </p-tabPanel>
-    <p-tabPanel header="Header 2">
+    <p-tabPanel header="Attachments">
       <p class="m-0">
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem
         accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
@@ -106,16 +93,6 @@
         numquam eius modi.
       </p>
     </p-tabPanel>
-    <p-tabPanel header="Header 3">
-      <p class="m-0">
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui
-        blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-        et quas molestias excepturi sint occaecati cupiditate non provident,
-        similique sunt in culpa qui officia deserunt mollitia animi, id est
-        laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-        distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-        cumque nihil impedit quo minus.
-      </p>
-    </p-tabPanel>
+    
   </p-tabView>
 </div>

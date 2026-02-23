@@ -25,7 +25,6 @@ export class RegisterComponent {
   ) {}
   isLoading = false;
   registerForm = this.fb.group({
-    username: ['', { nonNullable: true, validators: [Validators.required] }],
     email: ['', { nonNullable: true, validators: [Validators.required] }],
     password: ['', { nonNullable: true, validators: [Validators.required] }],
     confirmPassword: [
@@ -44,7 +43,6 @@ export class RegisterComponent {
     console.log('Register form submitted', this.registerForm.value);
     const formValue = this.registerForm.value;
     const registrationData = {
-      username: formValue.username ?? '',
       email: formValue.email ?? '',
       password: formValue.password ?? '',
       confirmPassword: formValue.confirmPassword ?? '',

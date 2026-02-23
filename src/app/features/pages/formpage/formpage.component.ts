@@ -11,29 +11,28 @@ import { SharedModule } from '../../../shared/components/shared.module';
   selector: 'app-formpage',
   templateUrl: './formpage.component.html',
   styleUrls: ['./formpage.component.css'],
-  imports: [
-    FormsModule,
-    CommonModule,
-    ReactiveFormsModule,
-    SharedModule
-  ],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, SharedModule],
 })
 export class FormpageComponent {
   constructor(
     private readonly MainService: MainService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {
     this.formGroup = this.fb.group({
+      appnumber: ['', Validators.required],
+      applicant: ['', Validators.required],
+      appdate: ['', Validators.required],
       salesAutoComplete: ['', Validators.required],
-      input1: ['', Validators.required],
-      input2: ['', Validators.required],
-      input3: ['', Validators.required],
-      input4: ['', Validators.required],
+      salesDepartment: ['', Validators.required],
+      customer: ['', Validators.required],
+      ou: ['', Validators.required],
+      invOrg: ['', Validators.required],
+      do: ['', Validators.required],
+      appdepartment: ['', Validators.required],
     });
-   
   }
   formGroup: FormGroup;
-  
+
   value: string = '';
   items: string[] = [];
   cities: any[] = [
@@ -52,7 +51,7 @@ export class FormpageComponent {
   search(event: any) {
     const q = event.query.toLowerCase();
     this.items = ['Apple', 'Banana', 'Cherry'].filter((x) =>
-      x.toLowerCase().includes(q)
+      x.toLowerCase().includes(q),
     );
   }
   loadItems(e: any) {}
@@ -64,9 +63,6 @@ export class FormpageComponent {
       console.log('Form is invalid');
     }
   }
-  
-
-  
 
   getAutoCompleteSuggestions(e: any) {
     this.MainService.getAutoCompleteSuggestions(e);

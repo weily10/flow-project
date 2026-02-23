@@ -26,6 +26,7 @@
   > -->
   <p-button
       type="button"
+      [disabled]="isLoading || form.invalid  "
       (click)="onSubmit()"
        >Submit</p-button
     >

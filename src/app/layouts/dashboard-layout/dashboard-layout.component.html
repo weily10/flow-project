@@ -1,9 +1,14 @@
 <p-toolbar styleClass="border-0 m-0 p-2">
   <div class="p-toolbar-group-start">
+    <div class="p-toolbar-group-end"><b>Flow Project</b></div>
+
     <button pButton type="button" icon="pi pi-bars" label="Menu" class="p-button-text"
       (click)="toggleSidebar()"></button>
   </div>
-  <div class="p-toolbar-group-end">Flow Project</div>
+  <div>
+    <button pButton class="p-button p-button-text" icon="pi pi-sign-out" (click)="logout()">
+    </button>
+  </div>
 </p-toolbar>
 
 <div class="layout" [class.sidebar-collapsed]="!sidebarOpen">

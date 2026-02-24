@@ -13,12 +13,15 @@ import { PanelModule } from 'primeng/panel';
 import { FieldsetModule } from 'primeng/fieldset';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
   imports: [
+    FormsModule,
+    RadioButtonModule,
     CommonModule,
     InputTextModule,
     CardModule,
@@ -32,7 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ButtonModule,
     DialogModule,
     SelectButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     CommonModule,
@@ -48,7 +51,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DropdownModule,
     DialogModule,
     SelectButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class SharedModule {}

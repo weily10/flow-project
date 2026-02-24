@@ -6,6 +6,7 @@ export interface User {
 
 export interface RegistrationData {
   email: string;
+  role: string;
   password: string;
   confirmPassword: string;
 }

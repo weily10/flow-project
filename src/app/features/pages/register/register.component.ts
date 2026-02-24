@@ -26,6 +26,7 @@ export class RegisterComponent {
   isLoading = false;
   registerForm = this.fb.group({
     email: ['', { nonNullable: true, validators: [Validators.required] }],
+    role: ['user', { nonNullable: true, validators: [Validators.required] }],
     password: ['', { nonNullable: true, validators: [Validators.required] }],
     confirmPassword: [
       '',
@@ -35,6 +36,7 @@ export class RegisterComponent {
 
   fields = [
     { name: 'email', label: 'Email', type: 'email' },
+    { name: 'role', label: 'Role', type: 'radio', options: ['User', 'Admin'] },
     { name: 'password', label: 'Password', type: 'password' },
     { name: 'confirmPassword', label: 'Confirm Password', type: 'password' },
   ];
@@ -44,6 +46,7 @@ export class RegisterComponent {
     const formValue = this.registerForm.value;
     const registrationData = {
       email: formValue.email ?? '',
+      role: formValue.role ?? '',
       password: formValue.password ?? '',
       confirmPassword: formValue.confirmPassword ?? '',
     };

@@ -14,12 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
-import { PrimeIcons } from 'primeng/api';
+import { MessageService, PrimeIcons } from 'primeng/api';
 import { SettingsComponent } from './features/pages/settings/settings.component';
 import { LoginComponent } from './features/pages/login/login.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { RegisterComponent } from './features/pages/register/register.component';
+import { Toast, ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, DashboardLayoutComponent],
@@ -33,8 +34,9 @@ import { RegisterComponent } from './features/pages/register/register.component'
     ToolbarModule,
     ButtonModule,
     SidebarModule,
+    ToastModule,
   ],
-  providers: [provideAnimations()],
+  providers: [provideAnimations(), MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

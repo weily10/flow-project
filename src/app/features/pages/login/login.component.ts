@@ -1,9 +1,15 @@
 import { Component, inject, Inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { SharedModule } from '../../../shared/components/shared.module';
 import { AuthFormComponent } from '../../components/auth/auth-form/auth-form.component';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +24,11 @@ export class LoginComponent {
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
+    private messageService: MessageService,
   ) {}
   loginForm = this.fb.group({
-    email: [''],
-    password: [''],
+    email: ['', { nonNullable: true, validators: [Validators.required] }],
+    password: ['', { nonNullable: true, validators: [Validators.required] }],
   });
   fields = [
     { name: 'email', label: 'Email', type: 'text' },
@@ -44,9 +51,20 @@ export class LoginComponent {
             this.router.navigate(['/']);
           },
           error: (error) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Login failed: ' + (error.error || 'Unknown error'),
+            });
             console.error('Login failed:', error);
+            this.isLoading = false;
           },
           complete: () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Login successful!',
+            });
             this.isLoading = false;
           },
         });

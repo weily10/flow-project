@@ -9,6 +9,7 @@ import {
 import { SharedModule } from '../../../shared/components/shared.module';
 import { AuthFormComponent } from '../../components/auth/auth-form/auth-form.component';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +23,8 @@ export class RegisterComponent {
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router,
+    private sharedModule: SharedModule,
+    private messageService: MessageService,
   ) {}
   isLoading = false;
   registerForm = this.fb.group({
@@ -42,7 +45,6 @@ export class RegisterComponent {
   ];
 
   onRegister() {
-    console.log('Register form submitted', this.registerForm.value);
     const formValue = this.registerForm.value;
     const registrationData = {
       email: formValue.email ?? '',
@@ -52,11 +54,19 @@ export class RegisterComponent {
     };
     this.authService.register(registrationData).subscribe({
       next: (response) => {
-        console.log('Registration successful', response);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Registration successful!',
+        });
         this.router.navigate(['auth/login']);
       },
       error: (error) => {
-        console.error('Registration failed', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Registration failed: ' + (error.error || 'Unknown error'),
+        });
       },
     });
   }

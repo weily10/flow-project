@@ -32,11 +32,7 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+ 
 
 .menu-item {
   padding: 10px 8px;
@@ -50,8 +46,7 @@
   display: flex;
   align-items: center;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, background 0.2s;
-  transform: translateX(0);
-  opacity: 1;
+   opacity: 1;
 }
 
 .menu-item:hover {
@@ -60,7 +55,7 @@
 
 /* --- The Slide Effect --- */
 /* When collapsed, slide the text/items out and fade them */
-.layout.sidebar-collapsed .menu-item {
+.layout.sidebar-collapsed  .menu-label {
   transform: translateX(-20px);
   opacity: 0;
   pointer-events: none;
@@ -80,9 +75,7 @@
 }
 
 @media (max-width: 1023px) {
-  .layout {
-    grid-template-columns: 0 1fr;
-  }
+  
 }
 
 .p-toolbar {

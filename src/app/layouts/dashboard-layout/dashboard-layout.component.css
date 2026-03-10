@@ -60,11 +60,11 @@
 
 /* --- The Slide Effect --- */
 /* When collapsed, slide the text/items out and fade them */
-.layout.sidebar-collapsed .menu-item {
+.layout.sidebar-collapsed .menu-item .menu-label {
   transform: translateX(-20px);
   opacity: 0;
   pointer-events: none;
-  /* Prevents clicking while hidden */
+  transition: 0.1s ease ;
 }
 
 .layout.sidebar-collapsed .sidebar h3 {

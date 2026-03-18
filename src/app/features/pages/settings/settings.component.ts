@@ -21,7 +21,7 @@ export class SettingsComponent {
   employeeForm: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
   ) {
     this.employeeForm = this.fb.group({
       employeeId: ['', Validators.required],

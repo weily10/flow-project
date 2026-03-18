@@ -27,4 +27,8 @@ export class AuthService {
       }),
     );
   }
+
+  getToken() {
+    return sessionStorage.getItem('authToken');
+  }
 }

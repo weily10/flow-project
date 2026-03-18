@@ -7,20 +7,25 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class SettingsService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   _employees = signal<Employee[]>([]);
   employees = computed(() => this._employees());
- 
+
   getEmployees(): Observable<Employee[]> {
-  return this.httpClient.get<Employee[]>('http://localhost:8080/employees');
-}
+    return this.httpClient.get<Employee[]>('http://localhost:8080/employees');
+  }
 
   addEmployee(employee: Employee) {
-    return this.httpClient.post<Employee>('http://localhost:8080/employees', employee)
+    return this.httpClient.post<Employee>(
+      'http://localhost:8080/employees',
+      employee,
+    );
   }
 
   deleteEmployee(employeeId: string) {
-    return this.httpClient.delete(`http://localhost:8080/employees/${employeeId}`);
+    return this.httpClient.delete(
+      `http://localhost:8080/employees/${employeeId}`,
+    );
   }
 }

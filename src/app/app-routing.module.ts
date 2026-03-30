@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormpageComponent } from './features/pages/formpage/formpage.component';
+import { HomeComponent } from './features/pages/home/home.component';
 import { SettingsComponent } from './features/pages/settings/settings.component';
 import { LoginComponent } from './features/pages/login/login.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { RegisterComponent } from './features/pages/register/register.component';
 import { authGuard } from './core/guards/auth.guards';
+import { EventComponent } from './features/pages/event/event.component';
 
 const routes: Routes = [
   {
@@ -23,10 +24,14 @@ const routes: Routes = [
     component: DashboardLayoutComponent,
     canActivate: [authGuard],
     children: [
-      { path: '', component: FormpageComponent, pathMatch: 'full' },
+      { path: '', component: HomeComponent, pathMatch: 'full' },
       {
         path: 'settings',
         component: SettingsComponent,
+      },
+      {
+        path: 'event',
+        component: EventComponent,
       },
     ],
   },

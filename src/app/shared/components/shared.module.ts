@@ -16,6 +16,8 @@ import { DialogModule } from 'primeng/dialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [],
@@ -36,6 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DialogModule,
     SelectButtonModule,
     ReactiveFormsModule,
+    FileUploadModule,
+    ToastModule,
   ],
   exports: [
     CommonModule,
@@ -52,6 +56,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DialogModule,
     SelectButtonModule,
     ReactiveFormsModule,
+    FileUploadModule,
+    ToastModule,
   ],
 })
 export class SharedModule {}

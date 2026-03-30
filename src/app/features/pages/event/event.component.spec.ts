@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormpageComponent } from './formpage.component';
+import { EventComponent } from './event.component';
 
-describe('FormpageComponent', () => {
-  let component: FormpageComponent;
-  let fixture: ComponentFixture<FormpageComponent>;
+describe('EventComponent', () => {
+  let component: EventComponent;
+  let fixture: ComponentFixture<EventComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FormpageComponent]
+      declarations: [EventComponent]
     });
-    fixture = TestBed.createComponent(FormpageComponent);
+    fixture = TestBed.createComponent(EventComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

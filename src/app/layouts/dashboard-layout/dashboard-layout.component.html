@@ -1,8 +1,8 @@
-<p-toolbar styleClass="border-0 m-0 p-2">
-  <div class="p-toolbar-group-start">
-    <div class="p-toolbar-group-end"><b>Flow Project</b></div>
+<p-toolbar styleClass="border-0 m-0 p-2" >
+  <div class="p-toolbar-group-start"  >
+    <div class="p-toolbar-group-end"><b>TrailForge</b></div>
 
-    <button pButton type="button" icon="pi pi-bars" label="Menu" class="p-button-text"
+    <button pButton type="button" icon="pi pi-bars" label="" class="ml-3 p-button-text"
       (click)="toggleSidebar()"></button>
   </div>
   <div>
@@ -14,7 +14,7 @@
 <div class="layout" [class.sidebar-collapsed]="!sidebarOpen">
   <aside class="sidebar">
     <nav class="menu">
-       <a routerLink="" class="menu-item"><span class="menu-icon pi pi-sign-out pr-1"></span><span class="menu-label">Application Form </span> </a>
+       <a routerLink="" class="menu-item"><span class="menu-icon pi pi-home pr-1"></span><span class="menu-label">Home</span> </a>
       <a routerLink="/settings" class="menu-item"><span class="menu-icon pi pi-cog pr-1"></span><span class="menu-label">Settings</span></a>
     </nav>
   </aside>

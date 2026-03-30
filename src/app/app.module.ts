@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormpageComponent } from './features/pages/formpage/formpage.component';
+import { HomeComponent } from './features/pages/home/home.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { environment } from './environments/environment';
@@ -18,13 +18,15 @@ import { MessageService, PrimeIcons } from 'primeng/api';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { Toast, ToastModule } from 'primeng/toast';
+import { EventComponent } from './features/pages/event/event.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, DashboardLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormpageComponent,
+    HomeComponent,
     AutoCompleteModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -32,6 +34,7 @@ import { Toast, ToastModule } from 'primeng/toast';
     ButtonModule,
     SidebarModule,
     ToastModule,
+    FormsModule,
   ],
   providers: [
     provideAnimations(),

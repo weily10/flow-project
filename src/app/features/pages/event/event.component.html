@@ -6,14 +6,29 @@
     <div class="grid">
       <div class="col-12">
         <div class="overflow-hidden border-1   border-dashed">
-          <div class="bg-cover bg-no-repeat bg-center  border-round  h-12rem w-full flex flex-wrap align-items-center justify-content-center"
+          <div
+            class="bg-cover bg-no-repeat bg-center  border-round  h-12rem w-full flex flex-wrap align-items-center justify-content-center"
             [ngStyle]="{'background-image': 'url('+imgUrl+')' }">
             <div class=" ">
               upload your picture here
               <p-toast />
-              <p-fileUpload mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]"
-                url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*"  
-                (onUpload)="onUpload($event)" />
+              <div>
+                <p-button class="p-button-rounded p-button-outlined" label="Select Image"
+                  (click)="openUploadDialog()"></p-button>
+                <p-dialog header="Choose Image" [(visible)]="visible" [modal]="true" [responsive]="true"
+                  [style]="{width: 'width', minWidth: 'minWidth'}">
+                  <p-fileUpload chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]"
+                    url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*"
+                    (onUpload)="onUpload($event)" />
+
+                  <p-footer>
+                    <p-button>save</p-button>
+                  </p-footer>
+                </p-dialog>
+
+
+              </div>
+
             </div>
           </div>
         </div>
@@ -27,31 +42,32 @@
           <label for="eventTitle">Location</label>
           <input type="text" formControlName="location" pInputText>
         </div>
-       
+
       </div>
       <div class="col-6">
         <div class="flex flex-column gap-2 mb-3">
           <label for="date">Time and Date</label>
-          <input id="date" type="text" formControlName="date" pInputText>
+          <p-calendar inputId="calendar-24h"  [showTime]="true" [hourFormat]="'12'"  styleClass="w-full"></p-calendar>
         </div>
         <div class="flex flex-column gap-2 mb-3">
           <label for="attenders">Attenders Limit</label>
           <input id="attenders" type="number" formControlName="attenders" pInputText>
         </div>
-       
+
       </div>
       <div class="col-12">
         <div class="flex flex-column gap-2 mb-3">
           <label for="eventTitle">Description</label>
-          <textarea rows="5" cols="30"  pTextarea class="full"  formControlName="description" ></textarea>
+          <p-editor  [style]="{ height: '320px' }" />
+
         </div>
-      
+
       </div>
 
     </div>
 
     <div class="text-right">
-      <p-button label="Done" (click)="onSubmit()" />
+      <p-button label="Publish" (click)="onSubmit()" />
     </div>
   </form>
 

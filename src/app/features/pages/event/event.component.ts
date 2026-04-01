@@ -29,6 +29,7 @@ export class EventComponent {
   }> = [];
   eventForm: FormGroup;
   imgUrl: string = '';
+  visible: boolean = false;
   constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
@@ -56,5 +57,9 @@ export class EventComponent {
       summary: 'Success',
       detail: 'File Uploaded with Basic Mode',
     });
+  }
+
+  openUploadDialog() {
+    this.visible = true;
   }
 }

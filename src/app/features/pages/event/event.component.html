@@ -5,27 +5,36 @@
   <form [formGroup]="eventForm">
     <div class="grid">
       <div class="col-12">
-        <div class="overflow-hidden border-1   border-dashed">
+        <div class="overflow-hidden border  border-dashed">
+          <div class="relative " *ngIf="imgUrl">
+            <div class="absolute right-0 pr-2 pt-2">
+              <p-button severity="contrast"   [rounded]="true"  icon="pi pi-times" (click)="removePic()"></p-button>
+            </div>
+          </div>
           <div
             class="bg-cover bg-no-repeat bg-center  border-round  h-12rem w-full flex flex-wrap align-items-center justify-content-center"
             [ngStyle]="{'background-image': 'url('+imgUrl+')' }">
-            <div class=" ">
-              upload your picture here
+            <div class="">
               <p-toast />
               <div>
-                <p-button class="p-button-rounded p-button-outlined" label="Select Image"
-                  (click)="openUploadDialog()"></p-button>
+
+                <div *ngIf="!imgUrl">
+                  <div class="text-center">
+                    upload here
+                  </div>
+                  <p-button class="p-button-rounded p-button-outlined" label="Select Image"
+                    (click)="openUploadDialog()"></p-button>
+                </div>
                 <p-dialog header="Choose Image" [(visible)]="visible" [modal]="true" [responsive]="true"
                   [style]="{width: 'width', minWidth: 'minWidth'}">
-                  <p-fileUpload chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]"
+                  <p-fileUpload #fubal chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]"
                     url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*"
                     (onUpload)="onUpload($event)" />
 
                   <p-footer>
-                    <p-button>save</p-button>
+                    <p-button (onClick)="saveImage(fubal)">save</p-button>
                   </p-footer>
                 </p-dialog>
-
 
               </div>
 
@@ -47,7 +56,7 @@
       <div class="col-6">
         <div class="flex flex-column gap-2 mb-3">
           <label for="date">Time and Date</label>
-          <p-calendar inputId="calendar-24h"  [showTime]="true" [hourFormat]="'12'"  styleClass="w-full"></p-calendar>
+          <p-calendar formControlName="date" inputId="calendar-24h" [showTime]="true" [hourFormat]="'12'" styleClass="w-full"></p-calendar>
         </div>
         <div class="flex flex-column gap-2 mb-3">
           <label for="attenders">Attenders Limit</label>
@@ -58,7 +67,7 @@
       <div class="col-12">
         <div class="flex flex-column gap-2 mb-3">
           <label for="eventTitle">Description</label>
-          <p-editor  [style]="{ height: '320px' }" />
+          <p-editor [style]="{ height: '320px' }"  formControlName="description"/>
 
         </div>
 

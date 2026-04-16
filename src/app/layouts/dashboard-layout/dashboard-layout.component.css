@@ -9,17 +9,16 @@
 .layout.sidebar-collapsed {
   /* Shrink the sidebar column to 70px (or 0 if you want it fully hidden) */
   grid-template-columns: 70px 1fr;
-  padding-left: 0;
-  /* Removed manual padding to let grid handle it */
+   /* Removed manual padding to let grid handle it */
 }
 
 .sidebar {
   border-right: 1px solid #eee;
   background: #fff;
   overflow: hidden;
+  padding: 12px;
   /* width: 100% ensures it fills the 280px or 70px grid track */
   width: 100%;
-  padding: 12px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -83,7 +82,13 @@
   .layout {
     grid-template-columns: 0 1fr;
   }
+
+  .sidebar {
+    padding: 0;
+  }
 }
+
+
 
 .p-toolbar {
   padding: 0.4rem !important;

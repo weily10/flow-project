@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { UploadEvent } from 'src/app/models/event.model';
+import { FileUpload } from 'primeng/fileupload';
 
 import {
   FormBuilder,
@@ -35,11 +36,12 @@ export class EventComponent {
     private messageService: MessageService,
   ) {
     this.eventForm = this.fb.group({
-      eventTitle: '',
-      attenders: '',
-      date: '',
-      location: '',
-      description: '',
+      fileSource: [null],
+      eventTitle: ['', Validators.required],
+      attenders: ['', Validators.required],
+      date: ['', Validators.required],
+      location: ['', Validators.required],
+      description: ['', Validators.required],
     });
   }
 
@@ -48,7 +50,15 @@ export class EventComponent {
   }
 
   onSubmit() {
-    this.events.push(this.eventForm.value);
+    if (this.eventForm.valid) {
+      this.events.push(this.eventForm.value);
+    } else {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Warn',
+        detail: 'form invalid',
+      });
+    }
   }
 
   onUpload(event: any) {
@@ -61,5 +71,21 @@ export class EventComponent {
 
   openUploadDialog() {
     this.visible = true;
+  }
+
+  saveImage(fileUpload: FileUpload) {
+    if (fileUpload.files && fileUpload.files.length > 0) {
+      const file = fileUpload.files[0];
+      this.imgUrl = URL.createObjectURL(file);
+    }
+
+    this.visible = false;
+
+    // Optional: Clear the file selection so the dialog is fresh next time
+    fileUpload.clear();
+  }
+
+  removePic() {
+    this.imgUrl = '';
   }
 }

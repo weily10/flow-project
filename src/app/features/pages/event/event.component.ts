@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/components/shared.module';
 import { MessageService } from 'primeng/api';
+import { EventService } from './services/event.service';
 
 @Component({
   standalone: true,
@@ -34,6 +35,7 @@ export class EventComponent {
   constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
+    private eventService: EventService,
   ) {
     this.eventForm = this.fb.group({
       fileSource: [null],
@@ -51,7 +53,20 @@ export class EventComponent {
 
   onSubmit() {
     if (this.eventForm.valid) {
-      this.events.push(this.eventForm.value);
+      this.eventService.saveEvent(this.eventForm.value).subscribe({
+        next: (res) => {
+          this.events.push(res);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Event Created',
+          });
+          this.eventForm.reset();
+        },
+        error(err) {
+          console.log(err);
+        },
+      });
     } else {
       this.messageService.add({
         severity: 'warn',

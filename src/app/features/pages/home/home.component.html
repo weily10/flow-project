@@ -4,8 +4,8 @@
    </div>
 
   <div class="grid">
-    <div *ngFor="let item of events; let i = index" class="col-6">
-      <p-card [header]="item.title">
+    <div *ngFor="let item of events; let i = index" class="sm:col-12  md:col-6 "  >
+      <p-card [header]="item.title" >
         <ng-template pTemplate="header">
           <div class="overflow-hidden">
             <div class="bg-cover bg-no-repeat bg-center  border-round h-15rem w-full"
@@ -16,7 +16,7 @@
 
         <div class="flex flex-column gap-2">
           <div>Location: <span class="font-bold">{{item.location}}</span></div>
-          <div> Date: <span class="font-bold">{{item.date}}</span> </div>
+          <div> Date: <span class="font-bold">{{item.date | date:'medium'}}</span> </div>
           <div> Description: <span class="font-bold">{{item.summary}}</span></div>
           <div> Attenders: <span class="font-bold">{{item.attenders}}</span></div>
         </div>
